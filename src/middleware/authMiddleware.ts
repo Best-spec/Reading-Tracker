@@ -1,3 +1,7 @@
+import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
+import { AuthenticatedRequest } from '../types/user.js';
+
 // ฟังก์ชันนี้จะเป็น middleware สำหรับตรวจสอบ token ใน header หรือ cookie
 export const middleware = (req: Request, res: Response, next: Function) => {
     const authHeader = req.headers['authorization'];
