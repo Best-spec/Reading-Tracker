@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import e from 'express';
 import jwt from 'jsonwebtoken';
 import { validateUserData } from '../utils/validate.js';
-import { AuthenticatedRequest, User } from '../types/user.js';
+import { User, AuthenticatedRequest } from '../types/user.js';
 
 let users: User[] = [];
 
@@ -70,7 +70,7 @@ export const middleware = (req: Request, res: Response, next: Function) => {
         if (err) {
             return res.status(403).json({ message: 'Token ไม่ถูกต้อง!' });
         }
-        (req as AuthenticatedRequest).user = user as { id: number; username: string };
+        (req as AuthenticatedRequest).user = user as { id: number; username: string;};
         next();
     });
 }
