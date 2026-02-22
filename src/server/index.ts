@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import 'dotenv/config';
 import allroutes from './routes/core.js';
 import cookieParser from 'cookie-parser';
-import { middleware } from './controllers/authController.js';
+import { middleware } from './middleware/authMiddleware.js';
 import { AuthenticatedRequest } from './types/user.js';
 
 const app = express();
