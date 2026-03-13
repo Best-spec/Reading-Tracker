@@ -1,0 +1,72 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+// ตาราง User
+model User {
+  id            String         @id @default(uuid())
+  username      String         @unique
+  email         String         @unique
+  password      String
+  avatar        String?
+  createdAt     DateTime       @default(now())
+  
+  // Relations
+  readingLogs   ReadingLog[]
+  followers     Follows[]      @relation("following")
+  following     Follows[]      @relation("follower")
+}
+
+// ตารางหนังสือ
+model Book {
+  id          String       @id @default(uuid())
+  title       String
+  author      String
+  totalPages  Int
+  coverUrl    String?
+  isbn        String?      @unique
+  metadata    Json?        // ใช้ JSONB เก็บข้อมูลยิบย่อย (เฉพาะ Postgres)
+  
+  // Relations
+  readingLogs ReadingLog[]
+}
+
+// ตาราง Track การอ่าน (หัวใจของโปรเจกต์)
+model ReadingLog {
+  id          String   @id @default(uuid())
+  userId      String
+  bookId      String
+  currentPage Int      @default(0)
+  status      Status   @default(PLAN)
+  startedAt   DateTime @default(now())
+  finishedAt  DateTime?
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  book        Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, bookId]) // ป้องกัน User คนเดียว Track หนังสือเล่มเดิมซ้ำซ้อน
+}
+
+// ระบบ Follow (Social)
+model Follows {
+  followerId  String
+  followingId String
+
+  follower    User     @relation("follower", fields: [followerId], references: [id])
+  following   User     @relation("following", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId]) // ใช้ Composite ID ป้องกันการกดติดตามซ้ำ
+}
+
+enum Status {
+  PLAN
+  READING
+  FINISHED
+  DROPPED
+}

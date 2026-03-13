@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "NodeNext",          // <--- เปลี่ยนจาก ESNext เป็น NodeNext
+    "moduleResolution": "NodeNext", // <--- สำคัญมาก! เปลี่ยนจาก bundler เป็น NodeNext
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src/**/*", "prisma.config.ts"]
+}
