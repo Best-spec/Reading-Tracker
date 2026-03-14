@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #f4f6fb;
+  background: linear-gradient(135deg,#eef1ff,#f8f9ff);
 }
 
 .header {
@@ -21,13 +21,34 @@ body {
   justify-content: center;
   align-items: flex-start;
 
-  padding-top: 40px;
+  padding-top: 60px;
 
   color: white;
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 32px;
+  font-weight: 700;
+
+  overflow: hidden;
 }
-    
+
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    rgba(20,20,40,0.5),
+    rgba(20,20,40,0.5)
+  );
+
+  backdrop-filter: blur(4px);
+}
+
+.header h1 {
+  position: relative;
+  z-index: 1;
+  letter-spacing: 1px;
+}
+
 .right {
   margin-left: 50%;
   width: 50%;
@@ -39,82 +60,92 @@ body {
 }
 
 .Minor {
-  background: white;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
 
   width: 420px;
-  padding: 40px;
+  padding: 45px;
 
-  border-radius: 16px;
+  border-radius: 20px;
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 
   display: flex;
   flex-direction: column;
-  border: 2px solid red;
+
+  border: none;
+  transition: 0.3s;
+}
+
+.Minor:hover{
+  transform: translateY(-5px);
 }
 
 .Minor h2 {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   text-align: center;
-  font-size: 24px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #333;
 }
 
 .account {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .account h5 {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-size: 14px;
-  color: #555;
+  color: #666;
 }
 
 .account input {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
 
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid #ddd;
 
   font-size: 14px;
 
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 .account input:focus {
   border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
   outline: none;
 }
 
 button {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
 
-  margin-top: 10px;
+  margin-top: 15px;
 
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
 
-  background: #6366f1;
+  background: linear-gradient(90deg,#6366f1,#8b5cf6);
   color: white;
 
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
 
   cursor: pointer;
 
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(99,102,241,0.3);
 }
 
 .footer {
   display: flex;
   justify-content: space-between;
-
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .footer h6 {
@@ -125,38 +156,12 @@ button:hover {
   text-decoration: none;
   color: #6366f1;
   font-size: 13px;
+  transition: 0.2s;
 }
 
 .footer a:hover {
+  color: #4f46e5;
   text-decoration: underline;
-}
-
-
-.header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  background: rgba(40, 50, 30, 0.45);
-  backdrop-filter: blur(6px);
-
-  z-index: 0;
-}
-
-
-.header h1 {
-  position: relative;
-  z-index: 1;
-}
-
-
-.header {
-  position: fixed; 
-  overflow: hidden;
 }
 
 .buttonlogin a {
@@ -165,4 +170,3 @@ button:hover {
   text-decoration: none;
   color: white;
 }
-
