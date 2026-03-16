@@ -1,0 +1,137 @@
+:root {
+    --friend-bg: #f7f9ff;
+    --friend-border: #e2e8f0;
+    --friend-hover: #eef2ff;
+}
+
+/* Layout tweaks */
+.friends-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+    .friends-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.friend-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--friend-border);
+    background: var(--friend-bg);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.friend-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    background: var(--friend-hover);
+}
+
+.friend-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+.friend-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.friend-name {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-badge-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-online {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+}
+
+.status-offline {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger);
+}
+
+.friend-stats {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.friend-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.friend-actions .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+}
+
+.friend-actions .btn-remove {
+    background: #fde2e3;
+    color: var(--danger);
+}
+
+.friend-actions .btn-remove:hover {
+    background: #fdd8d9;
+}
+
+.friend-actions .btn-accept {
+    background: #d1fae5;
+    color: var(--success);
+}
+
+.friend-actions .btn-decline {
+    background: #fee2e2;
+    color: var(--danger);
+}
+
+.form-row {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.form-row input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    font-size: 1rem;
+}
+
+.form-row button {
+    min-width: 160px;
+}
+
+.hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}

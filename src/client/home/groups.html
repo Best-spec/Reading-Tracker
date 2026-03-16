@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadFlow - Groups</title>
+    <!-- Lucide Icons สำหรับไอคอนสวยๆ -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="groups.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"><i data-lucide="book-open"></i></div>
+                <span class="logo-text">ReadFlow</span>
+            </div>
+            <nav class="nav-menu" id="nav-menu"></nav>
+            <div class="status-badge">
+                <div id="online-status" class="online-pill"></div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h2>กลุ่มอ่านหนังสือ</h2>
+                    <div class="ai-insight" style="margin-top: 0.5rem;">
+                        <i data-lucide="users" style="color: var(--primary); width: 16px;"></i>
+                        <span>รวมพลังอ่านให้ถึงเป้าหมายด้วยกัน</span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="openCreateGroupModal()">
+                        <i data-lucide="plus"></i> สร้างกลุ่ม
+                    </button>
+                    <button class="btn" onclick="openJoinGroupModal()">
+                        <i data-lucide="log-in"></i> เข้ากลุ่ม
+                    </button>
+                </div>
+            </header>
+
+            <section class="groups-layout">
+                <aside class="groups-sidebar">
+                    <div class="groups-filter">
+                        <input id="search-groups" type="text" placeholder="ค้นหากลุ่ม..." />
+                    </div>
+                    <div id="groups-list" class="groups-list"></div>
+                </aside>
+
+                <section class="group-details" id="group-details">
+                    <div class="empty-state" id="empty-state">
+                        <h3>ยังไม่ได้เลือกกลุ่ม</h3>
+                        <p>เลือกกลุ่มจากด้านซ้ายเพื่อดูสถิติและ leaderboard</p>
+                    </div>
+
+                    <div id="details-content" class="details-content" style="display: none;">
+                        <div class="details-header">
+                            <div>
+                                <h3 id="detail-group-name"></h3>
+                                <p id="detail-group-desc" class="text-muted"></p>
+                            </div>
+                            <div class="details-actions">
+                                <button class="btn btn-outline" onclick="openInviteModal()">
+                                    <i data-lucide="share-2"></i> เชิญเพื่อน
+                                </button>
+                                <button class="btn btn-primary" onclick="leaveGroup()">
+                                    <i data-lucide="log-out"></i> ออกจากกลุ่ม
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="group-stats">
+                            <div class="stat-card" style="flex:1;">
+                                <div class="stat-header">
+                                    <div class="stat-title">เวลาการอ่านรวม</div>
+                                    <div class="stat-value" id="total-reading"></div>
+                                </div>
+                                <div class="stat-subtitle" id="avg-reading"></div>
+                            </div>
+                            <div class="stat-card" style="flex:1;">
+                                <div class="stat-header">
+                                    <div class="stat-title">จำนวนสมาชิก</div>
+                                    <div class="stat-value" id="member-count"></div>
+                                </div>
+                                <div class="stat-subtitle" id="group-code"></div>
+                            </div>
+                        </div>
+
+                        <div class="leaderboard">
+                            <div class="leaderboard-header">
+                                <h4>Leaderboard</h4>
+                                <span class="text-muted">เรียงจากเวลาการอ่านสูงสุด</span>
+                            </div>
+                            <div id="leaderboard-rows" class="leaderboard-rows"></div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <!-- MODALS -->
+    <div id="create-group-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>สร้างกลุ่มใหม่</h3>
+                <button onclick="closeCreateGroupModal()" style="background:none; border:none; cursor:pointer;"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="create-group-form">
+                    <div class="form-group">
+                        <label>ชื่อกลุ่ม</label>
+                        <input type="text" id="group-name" class="form-control" required placeholder="เช่น กลุ่มอ่านเช้า" />
+                    </div>
+                    <div class="form-group">
+                        <label>คำอธิบายสั้นๆ</label>
+                        <input type="text" id="group-desc" class="form-control" placeholder="เช่น อ่านกันเพื่อพัฒนาตัวเอง" />
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn" onclick="closeCreateGroupModal()">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">สร้างกลุ่ม</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="join-group-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>เข้าร่วมกลุ่ม</h3>
+                <button onclick="closeJoinGroupModal()" style="background:none; border:none; cursor:pointer;"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="join-group-form">
+                    <div class="form-group">
+                        <label>รหัสกลุ่ม</label>
+                        <input type="text" id="join-code" class="form-control" required placeholder="เช่น RW4D2" />
+                    </div>
+                    <div class="form-group">
+                        <label>ชื่อตัวเอง</label>
+                        <input type="text" id="join-name" class="form-control" required placeholder="ชื่อเล่นหรือชื่อในกลุ่ม" />
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn" onclick="closeJoinGroupModal()">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">เข้าร่วม</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="invite-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>เชิญเพื่อน</h3>
+                <button onclick="closeInviteModal()" style="background:none; border:none; cursor:pointer;"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>แชร์รหัสหรือลิงก์ให้เพื่อนเพื่อเข้าร่วมกลุ่ม:</p>
+                <div class="form-group">
+                    <label>ลิงก์เชิญ</label>
+                    <div class="invite-row">
+                        <input type="text" id="invite-link" class="form-control" readonly />
+                        <button type="button" class="btn btn-primary" onclick="copyInviteLink()">คัดลอก</button>
+                    </div>
+                </div>
+                <p class="text-muted" style="font-size:0.85rem; margin-top: 0.5rem;">
+                    เมื่อเพื่อนใช้ลิงก์นี้ เขาจะเข้าร่วมกลุ่มและทุกคนจะเห็นเวลาการอ่านรวมของกันและกัน
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="groups.js" defer></script>
+</body>
+</html>

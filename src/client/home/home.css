@@ -65,3 +65,17 @@ body {
 #dashboard{
     display: block;
 }
+#logoutBtn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#logoutBtn:hover {
+    background: #cc0000;
+}

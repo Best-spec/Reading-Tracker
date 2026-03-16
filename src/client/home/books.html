@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books - Management Component</title>
+    <!-- Lucide Icons สำหรับไอคอนสวยๆ -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="books.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"><i data-lucide="book-open"></i></div>
+                <span class="logo-text">ReadFlow</span>
+            </div>
+            <nav class="nav-menu" id="nav-menu"></nav>
+            <div class="status-badge">
+                <div id="online-status" class="online-pill"></div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            <!-- Tab Navigation -->
+            <div class="tab-bar">
+                <div class="tab-link active" id="tab-books" onclick="switchPage('books')">
+                    <i data-lucide="library"></i> หนังสือของฉัน
+                </div>
+                <div class="tab-link" id="tab-timer" onclick="switchPage('timer')">
+                    <i data-lucide="timer"></i> จับเวลาอ่าน
+                </div>
+            </div>
+
+            <!-- PAGE: MY BOOKS -->
+            <section id="section-books" class="page-section active">
+                <div class="page-header">
+                    <h2>หนังสือของฉัน 📚</h2>
+                    <button class="btn btn-primary" onclick="openModal()">
+                        <i data-lucide="plus"></i> เพิ่มหนังสือใหม่
+                    </button>
+                </div>
+                <div class="books-grid" id="books-grid"></div>
+            </section>
+
+            <!-- PAGE: READING TIMER -->
+            <section id="section-timer" class="page-section">
+                <div class="page-header">
+                    <h2>จับเวลาการอ่าน ⏱️</h2>
+                </div>
+                <div class="timer-card">
+                    <div class="timer-setup">
+                        <div class="form-group">
+                            <label>เลือกหนังสือที่จะอ่าน</label>
+                            <select id="timer-book-select" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>บท / เนื้อหาที่อ่าน</label>
+                            <input type="text" id="timer-chapter" class="form-control" placeholder="เช่น บทที่ 1 หรือ ชื่อหัวข้อ">
+                        </div>
+                    </div>
+
+                    <div class="timer-display" id="time-display">00:00:00</div>
+
+                    <div class="timer-controls">
+                        <button id="start-btn" class="btn btn-success" onclick="toggleTimer()">
+                            <i data-lucide="play"></i> Start
+                        </button>
+                        <button id="stop-btn" class="btn btn-danger" onclick="stopTimer()" disabled>
+                            <i data-lucide="square"></i> Stop
+                        </button>
+                        <button class="btn" onclick="resetTimer()">
+                            <i data-lucide="rotate-ccw"></i> Reset
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal สำหรับ เพิ่ม/แก้ไข -->
+    <div id="book-modal" class="modal-overlay">
+        <div class="modal">
+            <h3 id="modal-title" style="margin-bottom: 1.5rem;">เพิ่มหนังสือใหม่</h3>
+            <form id="book-form">
+                <input type="hidden" id="edit-id">
+                <div class="form-group">
+                    <label>ชื่อหนังสือ</label>
+                    <input type="text" id="title" class="form-control" required placeholder="เช่น Atomic Habits">
+                </div>
+                <div class="form-group">
+                    <label>ผู้เขียน</label>
+                    <input type="text" id="author" class="form-control" placeholder="ชื่อผู้แต่ง">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>จำนวนหน้าทั้งหมด</label>
+                        <input type="number" id="total-pages" class="form-control" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>หน้าที่อ่านแล้ว</label>
+                        <input type="number" id="read-pages" class="form-control" required min="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>URL หน้าปก (ถ้ามี)</label>
+                    <input type="text" id="cover-url" class="form-control" placeholder="https://...">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn" style="flex:1" onclick="closeModal()">ยกเลิก</button>
+                    <button type="submit" class="btn btn-primary" style="flex:1">บันทึกข้อมูล</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="books.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadFlow - Dashboard</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"><i data-lucide="book-open"></i></div>
+                <span class="logo-text">ReadFlow</span>
+            </div>
+            <nav class="nav-menu" id="nav-menu"></nav>
+            <div class="status-badge">
+                <div id="online-status" class="online-pill"></div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h2>ยินดีต้อนรับกลับมา, วัยรุ่น! 👋</h2>
+                    <div class="ai-insight">
+                        <i data-lucide="sparkles" style="color: #fbbf24; width: 16px;"></i>
+                        <span id="daily-insight">กำลังโหลดแรงบันดาลใจ...</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="stats-grid" id="stats-grid"></section>
+
+            <div class="dashboard-grid">
+                <!-- CHART -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="trending-up" style="color: var(--primary)"></i>
+                            แนวโน้มการอ่านรายสัปดาห์
+                        </div>
+                    </div>
+                    <div class="chart-container" id="chart-container"></div>
+                </section>
+
+                <!-- BOOKS -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="book-marked" style="color: var(--primary)"></i>
+                            กำลังอ่านอยู่
+                        </div>
+                        <button onclick="handleRecommend()" class="btn btn-ai">✨ AI แนะนำ</button>
+                    </div>
+                    <div class="book-list" id="books-list"></div>
+                    <button class="btn btn-primary" style="margin-top: 2rem;">
+                        <i data-lucide="book-open" style="width: 18px;"></i>
+                        หยิบมาอ่านต่อสิ
+                    </button>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- AI MODAL -->
+    <div id="ai-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title" style="font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="sparkles"></i> AI สรุปผล
+                </h3>
+                <button onclick="closeModal()" style="background:none; border:none; cursor:pointer;"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body" id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="dashboard.js" defer></script>
+</body>
+</html>

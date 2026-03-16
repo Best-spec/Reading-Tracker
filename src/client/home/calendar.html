@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadFlow - Calendar</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="calendar.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"><i data-lucide="book-open"></i></div>
+                <span class="logo-text">ReadFlow</span>
+            </div>
+            <nav class="nav-menu" id="nav-menu"></nav>
+            <div class="status-badge">
+                <div id="online-status" class="online-pill"></div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h2>ปฏิทินการอ่าน</h2>
+                    <p class="subheading">ดูสถิติการอ่านของคุณในแต่ละวัน พร้อม streak ต่อเนื่อง</p>
+                </div>
+            </header>
+
+            <div class="calendar-layout">
+                <section class="section-card calendar-panel">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="calendar" style="color: var(--primary)"></i>
+                            <span id="calendar-title">เดือนนี้</span>
+                        </div>
+                        <div class="calendar-controls">
+                            <button class="btn btn-outline" id="prev-month" title="เดือนก่อนหน้า">
+                                <i data-lucide="chevron-left"></i>
+                            </button>
+                            <button class="btn btn-outline" id="next-month" title="เดือนถัดไป">
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="calendar-weekdays">
+                        <div>อา.</div>
+                        <div>จ.</div>
+                        <div>อ.</div>
+                        <div>พ.</div>
+                        <div>พฤ.</div>
+                        <div>ศ.</div>
+                        <div>ส.</div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid"></div>
+
+                    <div class="legend">
+                        <span>ระดับการอ่าน</span>
+                        <div class="legend-items">
+                            <div class="legend-chip level-none">-</div>
+                            <div class="legend-chip level-low">น้อย</div>
+                            <div class="legend-chip level-medium">ปานกลาง</div>
+                            <div class="legend-chip level-high">มาก</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-card stats-panel">
+                    <div class="reading-status">
+                        <h3>สถิติการอ่าน</h3>
+                        <p>ดูภาพรวมเวลาอ่าน และ streak ของคุณ</p>
+                    </div>
+
+                    <div class="stat-card small" id="total-time-card"></div>
+                    <div class="stat-card small" id="streak-card"></div>
+                    <div class="stat-card small" id="avg-time-card"></div>
+
+                    <div class="log-entry">
+                        <h3>บันทึกเวลาวันนี้</h3>
+                        <p>ใส่เวลาที่อ่านในวันนี้ (หน่วยเป็นนาที)</p>
+                        <div class="form-row">
+                            <input type="number" id="today-minutes" min="0" placeholder="เช่น 30" />
+                            <button class="btn btn-primary" id="save-today-btn">บันทึก</button>
+                        </div>
+                        <p class="hint">คลิกวันที่ในปฏิทิน เพื่อปรับเวลาของวันนั้น</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="calendar.js" defer></script>
+</body>
+</html>

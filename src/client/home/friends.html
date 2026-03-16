@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadFlow - Friends</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="friends.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"><i data-lucide="book-open"></i></div>
+                <span class="logo-text">ReadFlow</span>
+            </div>
+            <nav class="nav-menu" id="nav-menu"></nav>
+            <div class="status-badge">
+                <div id="online-status" class="online-pill"></div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h2>เพื่อนของฉัน</h2>
+                    <p class="subheading">จัดการเพื่อน ดูสถานะ และสถิติการอ่านของเพื่อน ๆ</p>
+                </div>
+            </header>
+
+            <section class="section-card">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i data-lucide="user-plus" style="color: var(--primary)"></i>
+                        เพิ่มเพื่อน
+                    </div>
+                </div>
+                <div class="form-row">
+                    <input type="text" id="friend-search" placeholder="ค้นหาผู้ใช้ (username หรือ email)" />
+                    <button class="btn btn-primary" id="send-request-btn">ส่งคำขอ</button>
+                </div>
+                <p class="hint">ตัวอย่าง: @wanida หรือ wanida@example.com</p>
+            </section>
+
+            <div class="friends-grid">
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="user-check" style="color: var(--primary)"></i>
+                            คำขอเป็นเพื่อน
+                        </div>
+                    </div>
+                    <div id="requests-list" class="friend-list"></div>
+                </section>
+
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="users" style="color: var(--primary)"></i>
+                            เพื่อนของฉัน
+                        </div>
+                    </div>
+                    <div id="friends-list" class="friend-list"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="friends.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* Custom styles for the Statistics page */
+
+/* Ensure charts and lists stretch properly */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stats-grid .stat-card {
+    min-width: 220px;
+}
+
+/* Make chart containers a bit taller for better legibility */
+#daily-chart, #weekly-chart {
+    min-height: 260px;
+}
+
+/* Most-read list spacing */
+#most-read-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}

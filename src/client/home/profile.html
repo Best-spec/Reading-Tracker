@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadFlow - Profile</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"><i data-lucide="book-open"></i></div>
+                <span class="logo-text">ReadFlow</span>
+            </div>
+            <nav class="nav-menu" id="nav-menu"></nav>
+            <div class="status-badge">
+                <div id="online-status" class="online-pill"></div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h2>ข้อมูลโปรไฟล์ของคุณ</h2>
+                    <p class="subheading">ปรับแต่งชื่อ และรูปโปรไฟล์ของคุณได้ที่นี่</p>
+                </div>
+            </header>
+
+            <section class="profile-grid">
+                <div class="profile-card">
+                    <div class="avatar-area">
+                        <div class="avatar" id="avatar"></div>
+                        <div class="profile-info">
+                            <h3 id="profile-username">Username</h3>
+                            <p id="profile-id" class="muted">ID: -</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn btn-primary" onclick="openEditModal()">แก้ไขโปรไฟล์</button>
+                        <button class="btn btn-outline" onclick="openEditModal()">เปลี่ยนรูป</button>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stat-row">
+                        <div class="stat-title">เวลาการอ่านรวม</div>
+                        <div class="stat-value" id="total-reading">0 ชม. 0 นาที</div>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-title">จำนวนหนังสือที่อ่านจบ</div>
+                        <div class="stat-value" id="books-finished">0 เล่ม</div>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-title">จำนวนหนังสือในคลัง</div>
+                        <div class="stat-value" id="books-count">0 เล่ม</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- EDIT PROFILE MODAL -->
+    <div id="profile-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>แก้ไขโปรไฟล์</h3>
+                <button onclick="closeEditModal()" style="background:none; border:none; cursor:pointer;"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="input-username" class="form-control" placeholder="ชื่อของคุณ" required />
+                    </div>
+                    <div class="form-group">
+                        <label>รูปโปรไฟล์ (URL หรือ อัพโหลด)</label>
+                        <input type="text" id="input-avatar-url" class="form-control" placeholder="https://..." />
+                    </div>
+                    <div class="form-group">
+                        <label>อัพโหลดรูป (ไฟล์ JPG/PNG)</label>
+                        <input type="file" id="input-avatar-file" class="form-control" accept="image/*" />
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 1rem;">
+                        <button type="button" class="btn" style="flex:1" onclick="closeEditModal()">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary" style="flex:1">บันทึก</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="profile.js" defer></script>
+</body>
+</html>

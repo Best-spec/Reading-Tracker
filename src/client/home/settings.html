@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadFlow - Settings</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"><i data-lucide="book-open"></i></div>
+                <span class="logo-text">ReadFlow</span>
+            </div>
+            <nav class="nav-menu" id="nav-menu"></nav>
+            <div class="status-badge">
+                <div id="online-status" class="online-pill"></div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h2>การตั้งค่า</h2>
+                    <p class="subheading">ปรับแต่งบัญชีและวิธีการใช้งานของคุณ</p>
+                </div>
+            </header>
+
+            <div class="settings-grid">
+                <!-- CHANGE PASSWORD -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="lock" style="color: var(--primary)"></i>
+                            เปลี่ยนรหัสผ่าน
+                        </div>
+                    </div>
+
+                    <form id="password-form">
+                        <div class="form-group">
+                            <label>รหัสผ่านปัจจุบัน</label>
+                            <input type="password" id="current-password" class="form-control" required placeholder="********" />
+                        </div>
+                        <div class="form-group">
+                            <label>รหัสผ่านใหม่</label>
+                            <input type="password" id="new-password" class="form-control" required placeholder="อย่างน้อย 8 ตัว" minlength="8" />
+                        </div>
+                        <div class="form-group">
+                            <label>ยืนยันรหัสผ่านใหม่</label>
+                            <input type="password" id="confirm-password" class="form-control" required placeholder="กรอกซ้ำอีกครั้ง" />
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">อัปเดตรหัสผ่าน</button>
+                            <span id="password-feedback" class="feedback"></span>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- ONLINE STATUS -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="wifi" style="color: var(--primary)"></i>
+                            สถานะออนไลน์
+                        </div>
+                    </div>
+                    <p>ควบคุมการแสดงสถานะออนไลน์ของคุณ (ส่วนนี้ไม่เกี่ยวกับการเชื่อมต่อเครือข่ายจริง)</p>
+                    <div class="toggle-row">
+                        <span>แสดงว่าออนไลน์</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="online-toggle" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p class="hint">การตั้งค่านี้จะเก็บไว้ในเครื่องเท่านั้น คุณสามารถเปลี่ยนได้ทุกเมื่อ</p>
+                </section>
+
+                <!-- DELETE ACCOUNT -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="trash-2" style="color: var(--danger)"></i>
+                            ลบบัญชี
+                        </div>
+                    </div>
+                    <p>เมื่อลบบัญชี ข้อมูลทั้งหมดจะถูกลบออกจากระบบและไม่สามารถกู้คืนได้</p>
+                    <button class="btn btn-outline btn-danger" id="delete-account-btn">
+                        <i data-lucide="trash-2"></i> ลบบัญชี
+                    </button>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="confirm-delete-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 style="color: var(--danger);">ยืนยันการลบบัญชี</h3>
+                <button onclick="closeDeleteModal()" style="background:none; border:none; cursor:pointer;"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีของคุณ? กระบวนการนี้ไม่สามารถย้อนกลับได้</p>
+                <div class="modal-actions">
+                    <button class="btn" onclick="closeDeleteModal()">ยกเลิก</button>
+                    <button class="btn btn-danger" onclick="confirmDeleteAccount()">ลบเลย</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="settings.js" defer></script>
+</body>
+</html>

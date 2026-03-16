@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadFlow - Statistics</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="stats.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"><i data-lucide="book-open"></i></div>
+                <span class="logo-text">ReadFlow</span>
+            </div>
+            <nav class="nav-menu" id="nav-menu"></nav>
+            <div class="status-badge">
+                <div id="online-status" class="online-pill"></div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h2>สถิติการอ่านของคุณ</h2>
+                    <div class="ai-insight">
+                        <i data-lucide="sparkles" style="color: #fbbf24; width: 16px;"></i>
+                        <span id="insight-text">กำลังโหลดสถิติ...</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="stats-grid" id="stats-grid"></section>
+
+            <div class="dashboard-grid">
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="clock" style="color: var(--primary)"></i>
+                            เวลาอ่านรายวัน
+                        </div>
+                    </div>
+                    <div class="chart-container" id="daily-chart"></div>
+                </section>
+
+                <section class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i data-lucide="calendar" style="color: var(--primary)"></i>
+                            เวลาอ่านรายสัปดาห์
+                        </div>
+                    </div>
+                    <div class="chart-container" id="weekly-chart"></div>
+                </section>
+            </div>
+
+            <section class="section-card" style="margin-top: 1.5rem;">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i data-lucide="book-open" style="color: var(--primary)"></i>
+                        หนังสือที่อ่านมากที่สุด
+                    </div>
+                </div>
+                <div class="book-list" id="most-read-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="stats.js" defer></script>
+</body>
+</html>
